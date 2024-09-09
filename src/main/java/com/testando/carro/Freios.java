@@ -46,6 +46,7 @@ public class Freios {
     public void setNivelDeDesgaste(double nivelDeDesgaste) {
         this.nivelDeDesgaste = nivelDeDesgaste;
     }
+
     public void substituirPastilhas(){
         nivelDeDesgaste = (Math.random() * 10 ) + 1;
         if (nivelDeDesgaste>2){
@@ -59,9 +60,11 @@ public class Freios {
         double freioAjuste = (Math.random() * 9 ) + 1;
         if(freioAjuste<=10){
             System.out.println("Foi necessario ajustar o freio.");
+            System.out.println("-------------------------------");
         }
         else {
             System.out.println("Freio funcionando normalmente.");
+            System.out.println("-------------------------------");
         }
     }
 }

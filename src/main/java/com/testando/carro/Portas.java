@@ -6,18 +6,19 @@ public class Portas {
     private String cor;
     private String tipo;
     private boolean estado;
-    public void abrir(){
-        estado = true;
-    }
-    public void fechar(){
-        estado = false;
-    }
-    public void verificarEstado(){
-        if(estado=true){
-            System.out.println("Aporta está aberta");
+
+
+
+    public void verificarEstado(boolean estado){
+        this.estado = estado;
+
+        if(estado==true) {
+            System.out.println("A porta está aberta!");
+            System.out.println("------------------------");
         }
         else {
-            System.out.println("A porta está fechada");
+            System.out.println("A porta está fechada!");
+            System.out.println("------------------------");
         }
     }
 

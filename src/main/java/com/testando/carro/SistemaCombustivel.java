@@ -1,25 +1,18 @@
 package com.testando.carro;
 
 public class SistemaCombustivel {
-    private String tipoDeCombustivel;
-    private Double capacidade;
-    private Double nivelDeCombustivel;
 
-    private String marca;
+    private double nivelDeCombustivel;
 
-    private Boolean estado;
 
-    public SistemaCombustivel(String tipoDeCombustivel, Double capacidade, Double nivelDeCombustivel, String marca, Boolean estado) {
-        this.tipoDeCombustivel = tipoDeCombustivel;
-        this.capacidade = capacidade;
+    public SistemaCombustivel(Double nivelDeCombustivel) {
         this.nivelDeCombustivel = nivelDeCombustivel;
-        this.marca = marca;
-        this.estado = estado;
     }
 
-    public void verificarNivel(Double gasLevel){
-        gasLevel = nivelDeCombustivel;
-        //IF E ELSE (combustivel < 10 ou combustivel > 10)
+    //RETORNAR NIVEL DE COMBUSTIVEL
+    public double getNivelCombustivel(){
+        return nivelDeCombustivel;
+
     }
 
     public void abastecer(Double quantidade){

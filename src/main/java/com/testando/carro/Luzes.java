@@ -8,12 +8,8 @@ public class Luzes {
 
     private String modelo;
 
-    public Luzes(String tipo, int intensidade, String cor, boolean estado, String modelo) {
-        this.tipo = tipo;
-        this.intensidade = intensidade;
-        this.cor = cor;
-        this.estado = estado;
-        this.modelo = modelo;
+    public Luzes() {
+
     }
 
 
