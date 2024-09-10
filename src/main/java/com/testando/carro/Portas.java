@@ -7,11 +7,13 @@ public class Portas {
     private String tipo;
     private boolean estado;
 
-
-
-    public void verificarEstado(boolean estado){
-        this.estado = estado;
-
+    public void abrirPorta(){
+        estado = true;
+    }
+    public void fecharPorta(){
+        estado = false;
+    }
+    public void verificarEstado(){
         if(estado==true) {
             System.out.println("A porta está aberta!");
             System.out.println("------------------------");
@@ -57,5 +59,6 @@ public class Portas {
     public boolean isEstado() {
         return estado;
     }
+
 
 }

@@ -10,16 +10,39 @@ public class SistemaEletrico {
 
     private String marca;
 
-    public void verificarBateria() {
-        //BOLEANO SE TA BOM OU RUIM
+    public SistemaEletrico(Double voltagem, Double capacidade, String tipoDeBateria, Boolean estado, String marca) {
+        this.voltagem = voltagem;
+        this.capacidade = capacidade;
+        this.tipoDeBateria = tipoDeBateria;
+        this.estado = estado;
+        this.marca = marca;
     }
 
-    public void substituirBateria(){
-        //IF E ELSE "SE" O ESTADO DA BATERIA TA TOP
+    public void verificarBateria() {
+        voltagem = (Math.random() * 12 ) + 1;
+        if(voltagem >= 12){
+            System.out.println("A bateria está em bom estado.");
+        }
+        else {
+            System.out.println("A bateria está com um baixo valor de tensão.");
+        }
+    }
+
+    public void substituirBateria(Double voltagem, Double capacidade, String tipoDeBateria, Boolean estado, String marca) {
+        this.voltagem = voltagem;
+        this.capacidade = capacidade;
+        this.tipoDeBateria = tipoDeBateria;
+        this.estado = estado;
+        this.marca = marca;
     }
 
     public void testarSistema(){
-        //IF E ELSE SE O O ESTADO DO SISTEMA TA BOM
+        if(estado==true){
+            System.out.println("O sistema elétrico está funcionando.");
+        }
+        else{
+            System.out.println("O sistema elétrico não está funcionando.");
+        }
     }
 }
 
