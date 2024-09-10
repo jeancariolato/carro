@@ -18,4 +18,8 @@ public class Motor {
         System.out.println("O MOTOR ESTÁ LIGADO!");
         System.out.println("-----------------------");
     }
+    public void desligarMotor(){
+        System.out.println("O MOTOR ESTÁ DESLIGADO!");
+        System.out.println("-----------------------");
+    }
 }

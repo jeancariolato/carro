@@ -5,13 +5,15 @@ public class Luzes {
     private int intensidade;
     private String cor;
     private boolean estado;
-
     private String modelo;
 
-    public Luzes() {
-
+    public Luzes(String tipo, int intensidade, String cor, boolean estado, String modelo) {
+        this.tipo = tipo;
+        this.intensidade = intensidade;
+        this.cor = cor;
+        this.estado = estado;
+        this.modelo = modelo;
     }
-
 
     public void ligaLuzes(){
         System.out.println("AS LUZES DO CARRO ESTÃO LIGADAS!");

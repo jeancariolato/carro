@@ -7,6 +7,14 @@ public class Pneus {
     private String marca;
     private String estado;
 
+    public Pneus(String tamanho, String tipo, double pressao, String marca, String estado) {
+        this.tamanho = tamanho;
+        this.tipo = tipo;
+        this.pressao = pressao;
+        this.marca = marca;
+        this.estado = estado;
+    }
+
     public void substituir(String tamanho, String tipo, double pressao, String marca, String estado) {
         this.tamanho = tamanho;
         this.tipo = tipo;
@@ -32,10 +40,11 @@ public class Pneus {
     }
 
     public double verificarPressao() {
+
         return pressao;
     }
-
     public void ajustarPressao(double pressao) {
+
         this.pressao = pressao;
     }
 
@@ -54,4 +63,6 @@ public class Pneus {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+
 }

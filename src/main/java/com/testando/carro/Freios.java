@@ -7,6 +7,14 @@ public class Freios {
     private String marca;
     private double nivelDeDesgaste;
 
+    public Freios(String tipo, String material, double tamanho, String marca, double nivelDeDesgaste) {
+        this.tipo = tipo;
+        this.material = material;
+        this.tamanho = tamanho;
+        this.marca = marca;
+        this.nivelDeDesgaste = nivelDeDesgaste;
+    }
+
     public String getTipo() {
         return tipo;
     }
