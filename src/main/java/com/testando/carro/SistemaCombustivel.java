@@ -4,11 +4,11 @@ public class SistemaCombustivel {
 
     private double nivelDeCombustivel;
     private double capacidade;
-    private double tipoDeCombustivel;
+    private String tipoDeCombustivel;
     private String marca;
     private boolean estado;
 
-    public SistemaCombustivel(double nivelDeCombustivel, double capacidade, double tipoDeCombustivel, String marca, boolean estado) {
+    public SistemaCombustivel(double nivelDeCombustivel, double capacidade, String tipoDeCombustivel, String marca, boolean estado) {
         this.nivelDeCombustivel = nivelDeCombustivel;
         this.capacidade = capacidade;
         this.tipoDeCombustivel = tipoDeCombustivel;
@@ -30,7 +30,7 @@ public class SistemaCombustivel {
             }
     }
 
-    public void subtistuirTanque(double nivelDeCombustivel, double capacidade, double tipoDeCombustivel, String marca, boolean estado) {
+    public void subtistuirTanque(double nivelDeCombustivel, double capacidade, String tipoDeCombustivel, String marca, boolean estado) {
         this.nivelDeCombustivel = nivelDeCombustivel;
         this.capacidade = capacidade;
         this.tipoDeCombustivel = tipoDeCombustivel;
@@ -50,11 +50,11 @@ public class SistemaCombustivel {
         this.capacidade = capacidade;
     }
 
-    public double getTipoDeCombustivel() {
+    public String getTipoDeCombustivel() {
         return tipoDeCombustivel;
     }
 
-    public void setTipoDeCombustivel(double tipoDeCombustivel) {
+    public void setTipoDeCombustivel(String tipoDeCombustivel) {
         this.tipoDeCombustivel = tipoDeCombustivel;
     }
 

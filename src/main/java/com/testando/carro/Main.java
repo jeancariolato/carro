@@ -2,27 +2,35 @@ package com.testando.carro;
 
 public class Main {
     public static void main(String[] args) {
-        //CONSTRUINDO UM 'CARRO'
-        Motor motor = new Motor(1000,"Teste",12.0,"MARCA", true);
-        SistemaCombustivel sistemaCombustivel = new SistemaCombustivel("COMUM", 200,100,"PETROSHOW", true);
+        // CONSTRUINDO UM 'CARRO'
+        Motor motor = new Motor("Teste", 1000, 12.0, "MARCA", true);
+        SistemaCombustivel sistemaCombustivel = new SistemaCombustivel(125.0, 250.0, "COMUM", "PETROSHOW", true);
         Painel painel = new Painel();
-        Luzes luzes = new Luzes("LED",25, "AMARELA", false, "H3");
-        Freios freios = new Freios("","", 25.0,"", 12.0);
-        Suspensao suspensao = new Suspensao();
-        Banco banco = new Banco(4,"PRETO","","","");
+        Luzes luzes = new Luzes("LED", 25, "AMARELA", false, "H3");
+        Freios freios = new Freios("", "", 25.0, "", 12.0);
+        Banco banco = new Banco(4, "PRETO", "", "", "");
         Pneus pneu = new Pneus("Grande", "Offroad", 22.0, "Bridgestone", "Cheio");
+        Portas portas = new Portas();
 
-        //OBJETO CARRO
-        Carro carro = new Carro(motor, sistemaCombustivel, painel, luzes, freios, banco);
 
-        //PAINEL
-        carro.exibirInformacoesPainel();
+        // OBJETO CARRO
+        Carro carro = new Carro(motor, sistemaCombustivel, painel, luzes, portas, freios, banco, pneu);
 
-        //FREIOS
+        // FREIOS
         carro.substituirPastilha();
         carro.ajustarFreios();
 
-        //
+        // COMBUSTIVEL
+        carro.abastecerCarro(25.0);
+
+        // BANCO
+        carro.ajustarAlturaBanco(2.0);
+
+        // LUZES
+        carro.ligandoLuzes(false);
+
+        // PAINEL
+        carro.exibirInformacoesPainel();
 
     }
 }

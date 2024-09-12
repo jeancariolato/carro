@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.testando.carro;
 
-/**
- *
- * @author Abner
- */
 public class Banco {
     private int quantidade;
     private String material;
@@ -26,15 +18,30 @@ public class Banco {
 
     public String ajustarEncosto(String posicao) {
         String position = posicao;
-        return  position;
+        return position;
     }
 
-    public double ajustarAltura(double novaAltura){
-        double newHeight = novaAltura;
-        return newHeight;
+    public double ajustarAltura(double novaAltura) {
+
+        double alturaMinima = 0.5; 
+        double alturaMaxima = 2.0; 
+
+     
+        if (novaAltura < alturaMinima) {
+            System.out.println("A ALTURA DO BANCO ESTÁ NO MÍNIMO! " + alturaMinima);
+            System.out.println("---------------------------------------------");
+            return alturaMinima; 
+           
+        } else if (novaAltura > alturaMaxima) {
+            System.out.println("A ALTURA DO BANCO ESTÁ NO MÁXIMO! " + alturaMaxima);
+            System.out.println("---------------------------------------------");
+            return alturaMaxima; 
+        }
+
+        return novaAltura;
     }
 
-    public void verificarEstado(){
+    public void verificarEstado() {
 
     }
 

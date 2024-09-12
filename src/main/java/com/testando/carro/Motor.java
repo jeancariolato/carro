@@ -3,17 +3,69 @@ package com.testando.carro;
 
 public class Motor {
 
-    private double temperatura;
+    //ATRIBUTOS
+    private String tipo;
+    private double potencia;
+    private double cilindrada;
+    private String marca;
+    private boolean estado;
 
-    public Motor(Double potencia) {
-        this.temperatura = potencia;
+
+    //GETTERS AND SETTERS
+    public String getTipo() {
+        return tipo;
     }
 
-// MÉTODO DE RETORNAR TEMPERATURA
-    public double getTemperatura(){
-        return temperatura;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
-// MÉTODO DE LIGAR MOTOR
+
+    public void setPotencia(double potencia) {
+        this.potencia = potencia;
+    }
+
+    public double getCilindrada() {
+        return cilindrada;
+    }
+
+    public void setCilindrada(double cilindrada) {
+        this.cilindrada = cilindrada;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+  
+    
+    //CONSTRUTOR
+    public Motor(String tipo, double potencia, double cilindrada, String marca, boolean estado) {
+        this.tipo = tipo;
+        this.potencia = potencia;
+        this.cilindrada = cilindrada;
+        this.marca = marca;
+        this.estado = estado;
+    }
+
+    // MÉTODO DE RETORNAR POTENCIA
+    public double getPotencia(){
+        return potencia;
+    }
+    
+
+    // MÉTODO DE LIGAR MOTOR
     public void ligarMotor(){
         System.out.println("O MOTOR ESTÁ LIGADO!");
         System.out.println("-----------------------");

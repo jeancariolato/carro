@@ -15,20 +15,28 @@ public class Luzes {
         this.modelo = modelo;
     }
 
-    public void ligaLuzes(){
+    // METODO PARA LIGAR OU DESLIGAR
+    public void onOff(boolean estado){
+        if(estado == true){
+            ligaLuzes();
+        } else {
+            desligaLuzes();
+        }
+    }
+
+    public void ligaLuzes() {
         System.out.println("AS LUZES DO CARRO ESTÃO LIGADAS!");
         estado = true;
     }
 
-    public void desligaLuzes(){
+    public void desligaLuzes() {
         System.out.println("AS LUZES DO CARRO ESTÃO DESLIGADAS!");
         estado = false;
     }
 
-    public void ajustarIntensidade(int novaIntensidade){
+    public void ajustarIntensidade(int novaIntensidade) {
         novaIntensidade = intensidade;
         System.out.println("A INTENSIDADE DAS LUZES ESTÃO EM:" + novaIntensidade);
     }
 
 }
-
