@@ -42,7 +42,58 @@ public class Banco {
     }
 
     public void verificarEstado() {
-
+        double var = (Math.random() * 10 ) + 1;
+        if(var<2.5){
+            System.out.println("O banco está inclinado 90º" + "\n------------------------");
+        }
+        if(var>2.5||5>var){
+            System.out.println("O banco está inclinado 75º" + "\n------------------------");
+        }
+        if(var>5||7.5>var){
+            System.out.println("O banco está inclinado 50º" + "\n------------------------");
+        }
+        if(var>7.5||10>var){
+            System.out.println("O banco está inclinado 35º" + "\n------------------------");
+        }
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

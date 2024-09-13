@@ -7,8 +7,18 @@ public class Portas {
     private String tipo;
     private boolean estado;
 
-    public void abrirPorta(){
+    public Portas(int quantidade, String material, String cor, String tipo, boolean estado) {
+        this.quantidade = quantidade;
+        this.material = material;
+        this.cor = cor;
+        this.tipo = tipo;
+        this.estado = estado;
+    }
+
+    public void abrirPorta(Luzes luzes){
         estado = true;
+        luzes.ligaLuzes();
+
     }
     public void fecharPorta(){
         estado = false;

@@ -44,5 +44,45 @@ public class SistemaEletrico {
             System.out.println("O sistema elétrico não está funcionando.");
         }
     }
+
+    public Double getVoltagem() {
+        return voltagem;
+    }
+
+    public void setVoltagem(Double voltagem) {
+        this.voltagem = voltagem;
+    }
+
+    public Double getCapacidade() {
+        return capacidade;
+    }
+
+    public void setCapacidade(Double capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public String getTipoDeBateria() {
+        return tipoDeBateria;
+    }
+
+    public void setTipoDeBateria(String tipoDeBateria) {
+        this.tipoDeBateria = tipoDeBateria;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 }
 

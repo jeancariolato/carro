@@ -45,9 +45,6 @@ public class Motor {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
   
     
     //CONSTRUTOR
@@ -66,11 +63,18 @@ public class Motor {
     
 
     // MÉTODO DE LIGAR MOTOR
-    public void ligarMotor(){
-        System.out.println("O MOTOR ESTÁ LIGADO!");
-        System.out.println("-----------------------");
+    public void ligarMotor(SistemaCombustivel sistemacombustivel){
+        if(sistemacombustivel.verificarNivel()>0){
+            estado = true;
+            System.out.println("O MOTOR ESTÁ LIGADO!");
+            System.out.println("-----------------------");
+        }
+        else{
+            System.out.println("Não foi possivel ligar o motor, não há combustivel.");
+        }
     }
     public void desligarMotor(){
+        estado = false;
         System.out.println("O MOTOR ESTÁ DESLIGADO!");
         System.out.println("-----------------------");
     }

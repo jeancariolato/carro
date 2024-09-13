@@ -18,7 +18,6 @@ public class SistemaCombustivel {
 
     public double verificarNivel(){
         return nivelDeCombustivel;
-
     }
 
     public void abastecer(Double quantidade){
