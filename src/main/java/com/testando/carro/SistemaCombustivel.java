@@ -35,6 +35,7 @@ public class SistemaCombustivel {
         this.tipoDeCombustivel = tipoDeCombustivel;
         this.marca = marca;
         this.estado = estado;
+        System.out.println("Tanque trocado!");
     }
 
     public void setNivelDeCombustivel(double nivelDeCombustivel) {

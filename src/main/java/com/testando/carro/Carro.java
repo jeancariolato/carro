@@ -41,6 +41,8 @@ public class Carro {
         this.quilometragem = quilometragem;
     }
 
+    //METODOS DO CARRO
+
     public void ligar(){
         motor.ligarMotor(sistemaCombustivel);
         luzes.ligaLuzes();
@@ -54,22 +56,39 @@ public class Carro {
     }
 
     //METODOS DO PAINEL
-    public void exibirInformacoesPainel() {
-        painel.exibirStatus(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico);
+    public void ligarDisplay() {
+        painel.atualizarInformacoes(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico);
+        painel.ligarDisplay();
+    }
+    public void desligarDisplay(){
+        painel.desligarDisplay();
+    }
+    public void atualizarInformacoes(){
+        painel.atualizarInformacoes(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico);
+        painel.ligarDisplay();
     }
 
     //METODOS DO SISTEMA DE FREIO
     public void ajustarFreios(){
         freios.ajustarFreio();
     }
-
     public void substituirPastilha(){
         freios.substituirPastilhas();
+    }
+    public void verificarDesgaste(){
+        freios.verificarDesgaste();
     }
 
     // METODOS PARA O BANCO
     public void ajustarAlturaBanco(double novaAltura){
         banco.ajustarAltura(novaAltura);
+    }
+    public void verificarEstadoBanco() {
+
+        banco.verificarEstado();
+    }
+    public void ajustarEncostoBanco(String posicao){
+        banco.ajustarEncosto(posicao);
     }
 
     // METODOS PARA AS LUZES
@@ -78,13 +97,70 @@ public class Carro {
         boolean e = estado;
         luzes.onOff(e);
     }
+    public void ajustarIntensidade(int novaIntensidade){
+        luzes.ajustarIntensidade(novaIntensidade);
+    }
 
     // METODOS DO SISTEMA DE COMBUSTIVEL
     public void abastecerCarro(double gasolina){
         sistemaCombustivel.abastecer(gasolina);
     }
+    public void substituirTanque(double nivelDeCombustivel, double capacidade, String tipoDeCombustivel, String marca, boolean estado){
+        sistemaCombustivel.subtistuirTanque(nivelDeCombustivel, capacidade, tipoDeCombustivel, marca, estado);
+    }
+    public void verificarNivel(){
+        System.out.println("O nivel do sistema de combustivel está em " +
+        sistemaCombustivel.verificarNivel());
+    }
 
+    //METODOS PARA O MOTOR
 
+    public void verificarEstadoMotor(){
+        System.out.println("O estado do motor é: " + motor.verificarEstado());
+    }
+
+    //METODOS PARA OS PNEUS
+
+    public void substituirPneu(String tamanho, String tipo, double pressao, String marca, String estado){
+        pneus.substituir(tamanho, tipo, pressao, marca, estado);
+    }
+
+    public void verificarPressao(){
+        System.out.println("O estado da pressão dos pneus é: " + pneus.verificarPressao());
+    }
+    public void ajustarPressao(double pressao){
+        pneus.ajustarPressao(pressao);
+    }
+
+    //METODOS PARA AS PORTAS
+    public void abrirPorta(){
+        portas.abrirPorta(luzes);
+    }
+    public void fecharPorta(){
+        portas.fecharPorta();
+    }
+    public void verificarEstadoPorta(){
+        portas.verificarEstado();
+    }
+
+    //METODOS PARA O SISTEMA DE DIREÇAO
+
+    public void ajustarDirecao(double angulo){
+        sistemaDirecao.ajustarDirecao(angulo);
+    }
+
+    public void verificarEstadoDirecao(){
+        sistemaDirecao.verificarEstado();
+    }
+    public void substituirComponenteDirecao(String tipo, boolean assistido, String material, Double relacao, String marca){
+        sistemaDirecao.substituirComponente(tipo, assistido, material, relacao, marca);
+    }
+
+    //METODOS PARA O SISTEMA ELETRICO
+
+    //METODOS PARA O SISTEMA DE TRANSMISSAO
+
+    //METODOS PARA A SUSPENSAO
 
 
 

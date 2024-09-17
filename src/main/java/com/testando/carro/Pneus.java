@@ -40,12 +40,11 @@ public class Pneus {
     }
 
     public double verificarPressao() {
-
         return pressao;
     }
     public void ajustarPressao(double pressao) {
-
         this.pressao = pressao;
+        System.out.println("A nova pressão do pneu é: " + pressao);
     }
 
     public String getMarca() {

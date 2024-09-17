@@ -41,7 +41,7 @@ public class Motor {
     }
 
 
-    public boolean isEstado() {
+    public boolean verificarEstado() {
         return estado;
     }
 

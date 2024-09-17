@@ -34,7 +34,7 @@ public class Main {
         carro.ligandoLuzes(false);
 
         // PAINEL
-        carro.exibirInformacoesPainel();
+        carro.ligarDisplay();
 
     }
 }
