@@ -19,8 +19,9 @@ public class Suspensao {
         this.altura = altura;
     }
 
-    public void verificarEstado(){
-        System.out.println("Altura: " + altura + ", Rigidez: " + rigidez  + "\n------------------------");
+    public String verificarEstado(){
+        String estadoString = "Altura da suspensão: " + altura + ", Rigidez da suspensão: " + rigidez ;
+        return estadoString;
     }
 
     public void substituir(String tipo, String material, double altura, int rigidez, String marca) {

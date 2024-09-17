@@ -14,9 +14,14 @@ public class Carro {
     private Portas portas;
     private Pneus pneus;
     private Suspensao suspensao;
+    private String modelo;
+    private int ano;
+    private String cor;
+    private String placa;
+    private double quilometragem;
 
 
-    public Carro(Motor motor, SistemaCombustivel sistemaCombustivel, SistemaEletrico sistemaEletrico, SistemaTransmissao sistemaTransmissao, SistemaDirecao sistemaDirecao, Painel painel, Freios freios, Luzes luzes, Banco banco, Portas portas, Pneus pneus, Suspensao suspensao) {
+    public Carro(Motor motor, SistemaCombustivel sistemaCombustivel, SistemaEletrico sistemaEletrico, SistemaTransmissao sistemaTransmissao, SistemaDirecao sistemaDirecao, Painel painel, Freios freios, Luzes luzes, Banco banco, Portas portas, Pneus pneus, Suspensao suspensao, String modelo, int ano, String cor, String placa, double quilometragem) {
         this.motor = motor;
         this.sistemaCombustivel = sistemaCombustivel;
         this.sistemaEletrico = sistemaEletrico;
@@ -29,6 +34,23 @@ public class Carro {
         this.portas = portas;
         this.pneus = pneus;
         this.suspensao = suspensao;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.cor = cor;
+        this.placa = placa;
+        this.quilometragem = quilometragem;
+    }
+
+    public void ligar(){
+        motor.ligarMotor(sistemaCombustivel);
+        luzes.ligaLuzes();
+    }
+    public void desligar(){
+        motor.desligarMotor();
+        luzes.desligaLuzes();
+    }
+    public void atualizarQuilometragem(double km){
+        quilometragem = km;
     }
 
     //METODOS DO PAINEL
@@ -50,6 +72,8 @@ public class Carro {
         banco.ajustarAltura(novaAltura);
     }
 
+    // METODOS PARA AS LUZES
+
     public void ligandoLuzes(boolean estado){
         boolean e = estado;
         luzes.onOff(e);
@@ -59,6 +83,8 @@ public class Carro {
     public void abastecerCarro(double gasolina){
         sistemaCombustivel.abastecer(gasolina);
     }
+
+
 
 
 

@@ -18,7 +18,7 @@ public class Main {
 
 
         // OBJETO CARRO
-        Carro carro = new Carro(motor,sistemaCombustivel, sistemaEletrico, sistemaTransmissao, sistemaDirecao, painel, freios, luzes, banco, portas, pneus, suspensao);
+        Carro carro = new Carro(motor,sistemaCombustivel, sistemaEletrico, sistemaTransmissao, sistemaDirecao, painel, freios, luzes, banco, portas, pneus, suspensao, "BMW iX1", 2024, "Prata", "JNE-2343", 0);
 
         // FREIOS
         carro.substituirPastilha();

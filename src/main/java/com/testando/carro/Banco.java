@@ -41,20 +41,26 @@ public class Banco {
         return novaAltura;
     }
 
-    public void verificarEstado() {
+    public String verificarEstado() {
+        String estadoString = "";
         double var = (Math.random() * 10 ) + 1;
         if(var<2.5){
-            System.out.println("O banco está inclinado 90º" + "\n------------------------");
+            estadoString = "O banco está inclinado 90º";
+            return estadoString;
         }
         if(var>2.5||5>var){
-            System.out.println("O banco está inclinado 75º" + "\n------------------------");
+            estadoString = "O banco está inclinado 75º";
+            return estadoString;
         }
         if(var>5||7.5>var){
-            System.out.println("O banco está inclinado 50º" + "\n------------------------");
+            estadoString = "O banco está inclinado 50º";
+            return estadoString;
         }
         if(var>7.5||10>var){
-            System.out.println("O banco está inclinado 35º" + "\n------------------------");
+            estadoString = "O banco está inclinado 35º";
+            return estadoString;
         }
+        return estadoString;
     }
 
     public int getQuantidade() {

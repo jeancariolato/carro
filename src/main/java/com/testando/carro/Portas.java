@@ -23,14 +23,15 @@ public class Portas {
     public void fecharPorta(){
         estado = false;
     }
-    public void verificarEstado(){
+    public String verificarEstado(){
         if(estado==true) {
-            System.out.println("A porta está aberta!");
-            System.out.println("------------------------");
+            String estadoString = "A porta está aberta!";
+            return estadoString;
         }
         else {
-            System.out.println("A porta está fechada!");
-            System.out.println("------------------------");
+            String estadoString = "A porta está fechada!";
+            return estadoString;
+
         }
     }
 
