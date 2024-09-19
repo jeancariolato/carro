@@ -15,9 +15,9 @@ public class Portas {
         this.estado = estado;
     }
 
-    public void abrirPorta(Luzes luzes){
+    public void abrirPorta(Luzes luzes, SistemaEletrico sistemaEletrico){
         estado = true;
-        luzes.ligaLuzes();
+        luzes.ligaLuzes(sistemaEletrico);
 
     }
     public void fecharPorta(){

@@ -45,26 +45,27 @@ public class Carro {
 
     public void ligar(){
         motor.ligarMotor(sistemaCombustivel);
-        luzes.ligaLuzes();
+        luzes.ligaLuzes(sistemaEletrico);
     }
     public void desligar(){
         motor.desligarMotor();
         luzes.desligaLuzes();
     }
-    public void atualizarQuilometragem(double km){
+    public void atualizarQuilometragem(){
+        double km = Math.random();
         quilometragem = km;
     }
 
     //METODOS DO PAINEL
     public void ligarDisplay() {
-        painel.atualizarInformacoes(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico);
+        painel.atualizarInformacoes(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico, quilometragem);
         painel.ligarDisplay();
     }
     public void desligarDisplay(){
         painel.desligarDisplay();
     }
     public void atualizarInformacoes(){
-        painel.atualizarInformacoes(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico);
+        painel.atualizarInformacoes(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico, quilometragem);
         painel.ligarDisplay();
     }
 
@@ -84,7 +85,6 @@ public class Carro {
         banco.ajustarAltura(novaAltura);
     }
     public void verificarEstadoBanco() {
-
         banco.verificarEstado();
     }
     public void ajustarEncostoBanco(String posicao){
@@ -95,7 +95,7 @@ public class Carro {
 
     public void ligandoLuzes(boolean estado){
         boolean e = estado;
-        luzes.onOff(e);
+        luzes.onOff(e, sistemaEletrico);
     }
     public void ajustarIntensidade(int novaIntensidade){
         luzes.ajustarIntensidade(novaIntensidade);
@@ -134,7 +134,7 @@ public class Carro {
 
     //METODOS PARA AS PORTAS
     public void abrirPorta(){
-        portas.abrirPorta(luzes);
+        portas.abrirPorta(luzes, sistemaEletrico);
     }
     public void fecharPorta(){
         portas.fecharPorta();
@@ -152,16 +152,85 @@ public class Carro {
     public void verificarEstadoDirecao(){
         sistemaDirecao.verificarEstado();
     }
+
     public void substituirComponenteDirecao(String tipo, boolean assistido, String material, Double relacao, String marca){
         sistemaDirecao.substituirComponente(tipo, assistido, material, relacao, marca);
     }
 
     //METODOS PARA O SISTEMA ELETRICO
 
+    public void verificarBateria(){
+        sistemaEletrico.verificarBateria();
+    }
+
+    public void substituirBateria(Double voltagem, Double capacidade, String tipoDeBateria, Boolean estado, String marca) {
+        sistemaEletrico.substituirBateria(voltagem, capacidade, tipoDeBateria, estado, marca);
+    }
+
+    public void testarSistemaEletrico(){
+        sistemaEletrico.testarSistema();
+    }
     //METODOS PARA O SISTEMA DE TRANSMISSAO
 
-    //METODOS PARA A SUSPENSAO
+    public void verificarEstadoTransmissao(){
+        sistemaTransmissao.verificarEstado();
+    }
 
+    public void substituirComponenteTransmissao(String tipo, int numeroMarchas, String material, String marca, Boolean estado) {
+        sistemaTransmissao.substituirComponente(tipo, numeroMarchas, material, marca, estado);
+    }
+    public void trocarMarcha(int marcha){
+            sistemaTransmissao.trocarMarcha(marcha, motor);
+    }
 
+        //METODOS PARA A SUSPENSAO
+    public void ajustarAlturaSuspensao(double altura){
+        suspensao.ajustarAltura(altura);
+    }
+    public void verificarEstadoSuspensao(){
+        suspensao.verificarEstado();
+    }
+    public void substituirSuspensao(String tipo, String material, double altura, int rigidez, String marca){
+        suspensao.substituir(tipo, material, altura, rigidez, marca);
+    }
 
+    public double getQuilometragem() {
+        return quilometragem;
+    }
+
+    public void setQuilometragem(double quilometragem) {
+        this.quilometragem = quilometragem;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 }

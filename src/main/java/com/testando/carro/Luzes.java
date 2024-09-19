@@ -6,7 +6,6 @@ public class Luzes {
     private String cor;
     private boolean estado;
     private String modelo;
-    SistemaEletrico sistemaeletrico;
 
     public Luzes(String tipo, int intensidade, String cor, boolean estado, String modelo) {
         this.tipo = tipo;
@@ -17,15 +16,15 @@ public class Luzes {
     }
 
     // METODO PARA LIGAR OU DESLIGAR
-    public void onOff(boolean estado){
+    public void onOff(boolean estado, SistemaEletrico sistemaeletrico){
         if(estado == true){
-            ligaLuzes();
+            ligaLuzes(sistemaeletrico);
         } else {
             desligaLuzes();
         }
     }
 
-    public void ligaLuzes() {
+    public void ligaLuzes(SistemaEletrico sistemaeletrico) {
         if(sistemaeletrico.getVoltagem()>=12){
             estado = true;
             System.out.println("AS LUZES DO CARRO ESTÃO LIGADAS!");

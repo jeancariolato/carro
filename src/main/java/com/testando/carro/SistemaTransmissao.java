@@ -18,7 +18,7 @@ public class SistemaTransmissao {
     }
 
     public void trocarMarcha(int marcha, Motor motor){
-        if(motor.isEstado() == true){
+        if(motor.verificarEstado() == true){
             System.out.println("A marcha atual do carro é " + marcha);
         }
         else{
