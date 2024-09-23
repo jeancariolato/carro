@@ -19,7 +19,6 @@ public class SistemaEletrico {
     }
 
     public void verificarBateria() {
-        voltagem = (Math.random() * 12 ) + 1;
         if(voltagem >= 12){
             System.out.println("A bateria está em bom estado.");
         }
