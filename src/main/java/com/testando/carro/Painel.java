@@ -62,10 +62,9 @@ public class Painel {
                     motor.getPotencia() + "CV" + "\n" +
                     portas.verificarEstado() + "\n" +
                     suspensao.verificarEstado() + "\n" +
-                    banco.verificarEstado() + "\n" +
+                    banco.getEstado() + "\n" +
                     "Nível de Combustivel: " + sistemaCombustivel.verificarNivel() + "L" + "\n" +
                     "Quilometragem: " + km + "Km";
-                    ;
         } else {
             System.out.println("Não foi possivel ligar o painel, há um problema no sistema elétrico.");
         }

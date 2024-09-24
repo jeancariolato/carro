@@ -44,28 +44,20 @@ public class Banco {
     }
 
     // Método para verificar o estado atual da inclinação do banco.
-    public String verificarEstado() {
-        String estadoString = "";
-        double var = (Math.random() * 10) + 1;
-
+    public void setEstado(double var) {
         // Verifica a inclinação com base no valor gerado aleatoriamente.
         if (var < 2.5) {
-            estadoString = "O banco está inclinado 90º";
-            return estadoString;
+            estado = "O banco está inclinado 90º";
         }
         if (var > 2.5 || 5 > var) {
-            estadoString = "O banco está inclinado 75º";
-            return estadoString;
+            estado = "O banco está inclinado 75º";
         }
         if (var > 5 || 7.5 > var) {
-            estadoString = "O banco está inclinado 50º";
-            return estadoString;
+            estado = "O banco está inclinado 50º";
         }
         if (var > 7.5 || 10 > var) {
-            estadoString = "O banco está inclinado 35º";
-            return estadoString;
+            estado = "O banco está inclinado 35º";
         }
-        return estadoString;
     }
 
     // Métodos getters e setters para acessar e modificar os atributos privados da classe.
@@ -106,7 +98,4 @@ public class Banco {
         return estado;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 }

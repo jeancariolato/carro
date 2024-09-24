@@ -102,8 +102,8 @@ public class Carro {
         banco.ajustarAltura(novaAltura);
     }
 
-    public void verificarEstadoBanco() {
-        banco.verificarEstado(); // Verifica o estado do banco (inclinação, etc.)
+    public void setEstadoBanco(double var) {
+        banco.setEstado(var); // Verifica o estado do banco (inclinação, etc.)
     }
 
     public void ajustarEncostoBanco(String posicao){

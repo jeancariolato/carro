@@ -26,7 +26,7 @@ class LuzesTest {
     @Test
     public void testeNaoLigarLuzes() {
         // VOLTAGEM INSUFICIENTE (voltagem < 12)
-        SistemaEletrico sistemaEletrico = new SistemaEletrico(12.0, 105.0, "Niquel", true, "Moura"); // supondo que 5V é insuficiente
+        SistemaEletrico sistemaEletrico = new SistemaEletrico(0.0, 105.0, "Niquel", true, "Moura"); // supondo que 5V é insuficiente
         Luzes luzes = new Luzes("LED", 50, "Branco", false, "Modelo X");
 
         luzes.ligaLuzes(sistemaEletrico);

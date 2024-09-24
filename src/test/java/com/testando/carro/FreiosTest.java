@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FreiosTest {
 
-    Freios freios;
 
     /**
      * Verifica se o desgaste calculado é igual ao valor esperado de 3.5.

@@ -12,7 +12,7 @@ class BancoTest {
     @Test
     public void testeEstadoNulo() {
         Banco banco = new Banco(1, "Tecido", "Cinza", "Fixo", null);
-
+        
         assertNull(banco.getEstado());
 
         banco.setEstado("Usado");
