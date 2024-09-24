@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarroTest {
 
+    /**
+     * Verifica se a quilometragem inicial é a esperada e se a quilometragem é atualizada corretamente
+     * após chamar o método atualizarQuilometragem().
+     */
     @Test
     void testeAtualizarKM() {
 
@@ -24,7 +28,7 @@ class CarroTest {
         Suspensao suspensao = new Suspensao("Telescópica", "Ferro", 10.0, 5, "Cofap");
 
         // OBJETO CARRO
-        Carro carro = new Carro(motor,sistemaCombustivel, sistemaEletrico, sistemaTransmissao, sistemaDirecao, painel, freios, luzes, banco, portas, pneus, suspensao, "BMW iX1", 2024, "Prata", "JNE-2343", 1000);
+        Carro carro = new Carro(motor, sistemaCombustivel, sistemaEletrico, sistemaTransmissao, sistemaDirecao, painel, freios, luzes, banco, portas, pneus, suspensao, "BMW iX1", 2024, "Prata", "JNE-2343", 1000);
 
         //testes
         assertEquals(1000, carro.getQuilometragem());
@@ -32,9 +36,5 @@ class CarroTest {
         carro.atualizarQuilometragem(); //Mathrandom
 
         assertNotEquals(1000, carro.getQuilometragem());
-
-
     }
-
-
 }
