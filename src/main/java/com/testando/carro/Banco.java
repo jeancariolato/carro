@@ -3,11 +3,11 @@ package com.testando.carro;
 public class Banco {
     private int quantidade;
     private String material;
-
     private String cor;
     private String tipo;
     private String estado;
 
+    // Construtor
     public Banco(int quantidade, String material, String cor, String tipo, String estado) {
         this.quantidade = quantidade;
         this.material = material;
@@ -16,54 +16,59 @@ public class Banco {
         this.estado = estado;
     }
 
+    // Método para ajustar a posição do encosto do banco.
     public String ajustarEncosto(String posicao) {
         String position = posicao;
         return position;
     }
 
+    // Método para ajustar a altura do banco com limites definidos.
     public double ajustarAltura(double novaAltura) {
+        double alturaMinima = 0.5;
+        double alturaMaxima = 2.0;
 
-        double alturaMinima = 0.5; 
-        double alturaMaxima = 2.0; 
-
-     
+        // Verifica se a nova altura é menor que o limite mínimo.
         if (novaAltura < alturaMinima) {
             System.out.println("A ALTURA DO BANCO ESTÁ NO MÍNIMO! " + alturaMinima);
             System.out.println("---------------------------------------------");
-            return alturaMinima; 
-           
-        } else if (novaAltura > alturaMaxima) {
+            return alturaMinima;
+        }
+        // Verifica se a nova altura é maior que o limite máximo.
+        else if (novaAltura > alturaMaxima) {
             System.out.println("A ALTURA DO BANCO ESTÁ NO MÁXIMO! " + alturaMaxima);
             System.out.println("---------------------------------------------");
-            return alturaMaxima; 
+            return alturaMaxima;
         }
-
-
 
         return novaAltura;
     }
 
+    // Método para verificar o estado atual da inclinação do banco.
     public String verificarEstado() {
         String estadoString = "";
-        double var = (Math.random() * 10 ) + 1;
-        if(var<2.5){
+        double var = (Math.random() * 10) + 1;
+
+        // Verifica a inclinação com base no valor gerado aleatoriamente.
+        if (var < 2.5) {
             estadoString = "O banco está inclinado 90º";
             return estadoString;
         }
-        if(var>2.5||5>var){
+        if (var > 2.5 || 5 > var) {
             estadoString = "O banco está inclinado 75º";
             return estadoString;
         }
-        if(var>5||7.5>var){
+        if (var > 5 || 7.5 > var) {
             estadoString = "O banco está inclinado 50º";
             return estadoString;
         }
-        if(var>7.5||10>var){
+        if (var > 7.5 || 10 > var) {
             estadoString = "O banco está inclinado 35º";
             return estadoString;
         }
         return estadoString;
     }
+
+    // Métodos getters e setters para acessar e modificar os atributos privados da classe.
 
     public int getQuantidade() {
         return quantidade;

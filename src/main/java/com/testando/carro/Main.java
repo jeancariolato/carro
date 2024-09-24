@@ -3,6 +3,7 @@ package com.testando.carro;
 public class Main {
     public static void main(String[] args) {
         // CONSTRUINDO UM 'CARRO'
+        //Instaciando cada objeto com seus respectivos atributos
         Motor motor = new Motor("Teste", 1000, 12.0, "MARCA", true);
         SistemaCombustivel sistemaCombustivel = new SistemaCombustivel(125.0, 250.0, "COMUM", "PETROSHOW", true);
         SistemaDirecao sistemaDirecao = new SistemaDirecao("Mecânica", true, "Ferro", 5.0, "Danfoss", true);
@@ -18,6 +19,7 @@ public class Main {
 
 
         // OBJETO CARRO
+        //  Cria o objeto 'Carro' unindo todos os sistemas anteriores e definindo a marca, ano, cor, placa e quilometragem
         Carro carro = new Carro(motor,sistemaCombustivel, sistemaEletrico, sistemaTransmissao, sistemaDirecao, painel, freios, luzes, banco, portas, pneus, suspensao, "BMW iX1", 2024, "Prata", "JNE-2343", 0);
         carro.ligar();
         carro.atualizarQuilometragem();
@@ -76,11 +78,6 @@ public class Main {
         carro.substituirSuspensao("Independente", "Aço", 15.0, 75, "Bilstein");
         carro.ajustarAlturaSuspensao(18);
         carro.verificarEstadoSuspensao();
-
-
-
-
-
 
 
 
