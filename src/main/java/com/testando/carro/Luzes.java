@@ -41,7 +41,7 @@ public class Luzes {
 
     public void ajustarIntensidade(int novaIntensidade) {
         if(estado=true){
-            novaIntensidade = intensidade;
+            this.intensidade = novaIntensidade;
             System.out.println("A INTENSIDADE DAS LUZES ESTÃO EM:" + novaIntensidade);
         }
         else {
