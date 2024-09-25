@@ -11,6 +11,7 @@ public class SistemaDirecao {
 
     private String marca;
     private boolean estado;
+    double ang = 0;
 
     public SistemaDirecao(String tipo, boolean assistido, String material, Double relacao, String marca, boolean estado) {
         this.tipo = tipo;
@@ -21,7 +22,9 @@ public class SistemaDirecao {
         this.estado = estado;
     }
 
-
+    public double getAng() {
+        return ang;
+    }
 
     public Double ajustarDirecao(Double angulo){
         Double ang = angulo;

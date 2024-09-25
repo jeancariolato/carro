@@ -12,7 +12,7 @@ public class Main {
         Painel painel = new Painel("", "Digital", "LCD", true, "Bosch", true);
         Luzes luzes = new Luzes("LED", 25, "AMARELA", false, "H3");
         Freios freios = new Freios("A disco", "Ferro", 25.0, "Cobreq", 12.0);
-        Banco banco = new Banco(4, "PRETO", "", "", "O banco está inclinado 90º");
+        Banco banco = new Banco(4, "PRETO", "", "", "O banco está inclinado 90º", 2);
         Pneus pneus = new Pneus("Grande", "Offroad", 22.0, "Bridgestone", "Cheio");
         Portas portas = new Portas(4, "Aço", "Cinza", "Asas de Borboleta", true);
         Suspensao suspensao = new Suspensao("Telescópica", "Ferro", 10.0, 5, "Cofap");
@@ -30,7 +30,7 @@ public class Main {
 
         // FREIOS
         carro.substituirPastilha();
-        carro.ajustarFreios();
+        carro.ajustarFreios(7);
         carro.verificarDesgaste();
 
         // BANCO

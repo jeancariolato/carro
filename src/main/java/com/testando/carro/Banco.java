@@ -6,14 +6,19 @@ public class Banco {
     private String cor;
     private String tipo;
     private String estado;
+    private double altura;
 
     // Construtor
-    public Banco(int quantidade, String material, String cor, String tipo, String estado) {
+    public Banco(int quantidade, String material, String cor, String tipo, String estado, double altura) {
         this.quantidade = quantidade;
         this.material = material;
         this.cor = cor;
         this.tipo = tipo;
         this.estado = estado;
+        this.altura = altura;
+    }
+    public double verificarAltura(){
+        return altura;
     }
 
     // Método para ajustar a posição do encosto do banco.

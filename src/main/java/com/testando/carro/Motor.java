@@ -71,6 +71,7 @@ public class Motor {
         }
         else{
             System.out.println("Não foi possivel ligar o motor, não há combustivel.");
+            estado=false;
         }
     }
     public void desligarMotor(){

@@ -81,9 +81,9 @@ public class Carro {
     }
 
     // Métodos relacionados ao sistema de freios
-    public void ajustarFreios(){
+    public void ajustarFreios(double freioAjuste){
         // Ajusta o sistema de freio
-        freios.ajustarFreio();
+        freios.ajustarFreio(freioAjuste);
     }
 
     public void substituirPastilha(){

@@ -48,7 +48,9 @@ public class Luzes {
             System.out.println("AS LUZES NÃO ESTÃO LIGADAS");
         }
     }
-
+    public boolean getEstado(){
+        return estado;
+    }
     public String getTipo() {
         return tipo;
     }
@@ -88,4 +90,5 @@ public class Luzes {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
+
 }

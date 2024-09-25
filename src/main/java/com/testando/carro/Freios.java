@@ -14,6 +14,14 @@ public class Freios {
         this.marca = marca;
         this.nivelDeDesgaste = nivelDeDesgaste;
     }
+    public void SubstituirFreios(String tipo, String material, double tamanho, String marca, double nivelDeDesgaste) {
+        this.tipo = tipo;
+        this.material = material;
+        this.tamanho = tamanho;
+        this.marca = marca;
+        this.nivelDeDesgaste = nivelDeDesgaste;
+    }
+
 
     public String getTipo() {
         return tipo;
@@ -64,8 +72,7 @@ public class Freios {
             System.out.println("Pastilha substituida!");
         }
     }
-    public void ajustarFreio(){
-        double freioAjuste = (Math.random() * 9 ) + 1;
+    public void ajustarFreio(double freioAjuste){
         if(freioAjuste<=10){
             System.out.println("Foi necessario ajustar o freio.");
             System.out.println("-------------------------------");
