@@ -54,13 +54,13 @@ public class Banco {
         if (var < 2.5) {
             estado = "O banco está inclinado 90º";
         }
-        if (var > 2.5 || 5 > var) {
+        if (var > 2.5 && 5 > var) {
             estado = "O banco está inclinado 75º";
         }
-        if (var > 5 || 7.5 > var) {
+        if (var > 5 && 7.5 > var) {
             estado = "O banco está inclinado 50º";
         }
-        if (var > 7.5 || 10 > var) {
+        if (var > 7.5 && 10 > var) {
             estado = "O banco está inclinado 35º";
         }
     }

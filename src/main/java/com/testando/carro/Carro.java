@@ -103,7 +103,8 @@ public class Carro {
     }
 
     public void setEstadoBanco(double var) {
-        banco.setEstado(var); // Verifica o estado do banco (inclinação, etc.)
+        double value = var;
+        banco.setEstado(value); // Verifica o estado do banco (inclinação, etc.)
     }
 
     public void ajustarEncostoBanco(String posicao){

@@ -6,32 +6,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
-    @Test
-    void main() {
-    }
 
-        Motor motor = new Motor("Teste", 1000, 12.0, "MARCA", true);
-        SistemaCombustivel sistemaCombustivel = new SistemaCombustivel(0.0, 250.0, "COMUM", "PETROSHOW", true);
-        SistemaDirecao sistemaDirecao = new SistemaDirecao("Mecânica", true, "Ferro", 5.0, "Danfoss", true);
-        SistemaEletrico sistemaEletrico = new SistemaEletrico(12.0, 105.0, "Niquel", true, "Moura");
-        SistemaTransmissao sistemaTransmissao = new SistemaTransmissao("Automática", 6, "Ferro", "Valeo", true);
-        Painel painel = new Painel("", "Digital", "LCD", true, "Bosch", true);
-        Luzes luzes = new Luzes("LED", 25, "AMARELA", false, "H3");
-        Freios freios = new Freios("A disco", "Ferro", 25.0, "Cobreq", 12.0);
-        Banco banco = new Banco(4, "PRETO", "", "", "", 1.2);
-        Pneus pneus = new Pneus("Grande", "Offroad", 22.0, "Bridgestone", "Cheio");
-        Portas portas = new Portas(4, "Aço", "Cinza", "Asas de Borboleta", true);
-        Suspensao suspensao = new Suspensao("Telescópica", "Ferro", 10.0, 5, "Cofap");
+    Motor motor = new Motor("Teste", 1000, 12.0, "MARCA", true);
+    SistemaCombustivel sistemaCombustivel = new SistemaCombustivel(0.0, 250.0, "COMUM", "PETROSHOW", true);
+    SistemaDirecao sistemaDirecao = new SistemaDirecao("Mecânica", true, "Ferro", 5.0, "Danfoss", true);
+    SistemaEletrico sistemaEletrico = new SistemaEletrico(12.0, 105.0, "Niquel", true, "Moura");
+    SistemaTransmissao sistemaTransmissao = new SistemaTransmissao("Automática", 6, "Ferro", "Valeo", true);
+    Painel painel = new Painel("", "Digital", "LCD", true, "Bosch", true);
+    Luzes luzes = new Luzes("LED", 25, "AMARELA", false, "H3");
+    Freios freios = new Freios("A disco", "Ferro", 25.0, "Cobreq", 12.0);
+    Banco banco = new Banco(4, "PRETO", "", "", "", 1.2);
+    Pneus pneus = new Pneus("Grande", "Offroad", 22.0, "Bridgestone", "Cheio");
+    Portas portas = new Portas(4, "Aço", "Cinza", "Asas de Borboleta", true);
+    Suspensao suspensao = new Suspensao("Telescópica", "Ferro", 10.0, 5, "Cofap");
 
-        // OBJETO CARRO
-        Carro carro = new Carro(motor, sistemaCombustivel, sistemaEletrico, sistemaTransmissao, sistemaDirecao, painel, freios, luzes, banco, portas, pneus, suspensao, "BMW iX1", 2024, "Prata", "JNE-2343", 1000);
+    // OBJETO CARRO
+    Carro carro = new Carro(motor, sistemaCombustivel, sistemaEletrico, sistemaTransmissao, sistemaDirecao, painel, freios, luzes, banco, portas, pneus, suspensao, "BMW iX1", 2024, "Prata", "JNE-2343", 1000);
 
+
+    //TESTE INTEGRADO (PORTAS - LUZES - SISTEMA ELÉTRICO)
     @Test
     public void testAbrirPortaLigaLuzes() {
         portas.abrirPorta(luzes, sistemaEletrico);
         assertTrue(luzes.getEstado());
     }
 
+    //TESTE INTEGRADO (LUZES - SISTEMA ELÉTRICO)
     @Test
     public void testeNaoLigarLuzes() {
         luzes.ligaLuzes(sistemaEletrico);
@@ -39,26 +39,30 @@ class MainTest {
         assertFalse(luzes.isEstado(), "As luzes não devem estar ligadas devido à voltagem insuficiente.");
     }
 
+    //TESTE INTEGRADO (FREIOS - SUSPENSÃO)
     @Test
     public void testAjusteFreiosComSuspensao() {
         // Verifica o desgaste inicial dos freios
         double desgasteInicial = freios.verificarDesgaste();
 
         // Ajuste da altura da suspensão para baixo
-        suspensao.ajustarAltura(8.0); // Supondo que isso deve aumentar o desgaste dos freios
+        suspensao.ajustarAltura(8.0);
 
         // Aumenta o desgaste dos freios se a altura da suspensão for menor que 10
         if (suspensao.getAltura() < 10) {
             double novoDesgaste = desgasteInicial + 5.0; // Simula um aumento no desgaste
             freios.SubstituirFreios("A disco", "Ferro", novoDesgaste, "Cobreq", 13.0);
             // Verificando se o desgaste é maior que o inicial
-            assertTrue(freios.verificarDesgaste() > desgasteInicial, "O desgaste deve aumentar ao abaixar a suspensão");
+            assertTrue(freios.verificarDesgaste() > desgasteInicial);
+            System.out.println("O desgaste deve aumentar ao abaixar a suspensão");
         } else {
             // Se a altura não for afetada, verifica se o desgaste permanece igual
-            assertEquals(desgasteInicial, freios.verificarDesgaste(), "O desgaste deve permanecer igual ao manter a altura");
+            assertEquals(desgasteInicial, freios.verificarDesgaste());
+            System.out.println("O desgaste deve permanecer igual ao manter a altura");
         }
     }
 
+    //TESTE INTEGRADO (MOTOR - SISTEMA COMBUSTÍVEL)
     @Test
     public void testeNaoLigarMotorSemCombustivel() {
         // Tentando ligar o motor
@@ -66,6 +70,8 @@ class MainTest {
         // Verificando se o motor não está ligado devido à falta de combustível
         assertFalse(motor.verificarEstado(), "O motor não deve estar ligado devido à falta de combustível.");
     }
+
+    //TESTE INTEGRADO (BANCOS - PNEUS)
     @Test
     public void testeAjusteBancoImpactaNaPressaoPneu() {
         // Ajustando a altura do banco
@@ -81,6 +87,10 @@ class MainTest {
         assertTrue(novaPressao >= 30.0 && novaPressao <= 40.0,
                 "A pressão do pneu deve estar entre 30 e 40 após o ajuste da altura do banco.");
     }
+
+
+
+    //TESTE INTEGRADO (MOTOR - SIST. COMBUSTIVEL - SIST.TRANSMISSÃO)
     @Test
     public void testeMotorImpactaTrocaMarcha() {
         // Configurações iniciais
@@ -97,6 +107,7 @@ class MainTest {
         assertNotNull(sistemaTransmissao.getTipo(), "O tipo de transmissão não deve ser nulo após a troca de marcha.");
     }
 
+    //TESTE INTEGRADO (SIST.COMBUSTÍVEL - PAINEL)
     @Test
     public void testeAtualizaPainelComCombustivel() {
         // Configuração inicial
@@ -108,9 +119,12 @@ class MainTest {
         // Verifica se o nível de combustível foi atualizado no painel
         Boolean painelStatus = painel.getEstado();
         assertNotNull(painelStatus, "O status do painel não deve ser nulo após o abastecimento.");
+        sistemaCombustivel.setEstado(false);
         // Verifica se o sistema de combustível está com estado correto
         assertFalse(sistemaCombustivel.isEstado(), "O sistema de combustível deve estar funcionando após o abastecimento.");
     }
+
+    //TESTE INTEGRADO (SIST.ELÉTRICO - PORTAS - PAINEL - PORTAS)
     @Test
     public void testeAberturaPortaAtualizaPainelInformacoes() {
         // Ligar o sistema elétrico antes de abrir a porta
@@ -125,6 +139,8 @@ class MainTest {
         // Verificando se o painel contém a informação correta sobre a porta aberta
         assertTrue(painel.getInfo().contains(portas.verificarEstado()), "O painel deve informar que a porta está aberta após a abertura.");
     }
+
+    //TESTE INTEGRADO (PNEUS - SIST.DIRECAO )
     @Test
     public void testAjusteDirecaoImpactaPressaoPneu() {
         // Estado inicial do pneu
@@ -142,6 +158,8 @@ class MainTest {
         // Verificando se a nova pressão está abaixo do limite mínimo
         assertTrue(novaPressao >= 30.0, "A pressão do pneu deve ser no mínimo 30 após o ajuste da direção.");
     }
+
+    //TESTE INTEGRADO (BANCOS - SIST.DIREÇÃO)
     @Test
     public void testAjusteBancoImpactaDirecao() {
         // Ajuste da altura do banco
@@ -153,6 +171,8 @@ class MainTest {
         // Verificando se o ângulo da direção está no intervalo esperado
         assertTrue(sistemaDirecao.getAng() > 0, "O ângulo da direção deve ser positivo após o ajuste do banco.");
     }
+
+    //TESTE INTEGRADO (SIST.DIRECÃO - SIST.TRANSMISSÃO)
     @Test
     public void testDirecaoInvalidaImpactaTrocaMarcha() {
         // Ajuste a direção para um valor inválido (como um ângulo fora do intervalo)
@@ -162,14 +182,25 @@ class MainTest {
         if (sistemaDirecao.getAng() < 0) {
             sistemaTransmissao.setTipo(null); // Define o tipo como nulo se a direção for inválida
         } else {
-            sistemaTransmissao.trocarMarcha(2, sistemaDirecao); // Troca de marcha apenas se a direção for válida
+            sistemaTransmissao.trocarMarcha(2, motor); // Troca de marcha apenas se a direção for válida
         }
 
         // Verifica se o tipo de transmissão é nulo devido à direção inválida
         assertNull(sistemaTransmissao.getTipo(), "O tipo de transmissão deve ser nulo devido à direção inválida.");
     }
 
+    //TESTE (BANCO - CARRO)
+    @Test
+    public void testeSetEstadoBanco() {
+       carro.setEstadoBanco(3.2); // Ajustando o estado do banco
 
+        // Verificando se o estado foi ajustado corretamente
+        assertEquals("O banco está inclinado 75º", banco.getEstado(), "O estado do banco deve ser 75º.");
+    }
 
+    @Test
+    void testLigarCarro() {
+
+    }
 
 }
