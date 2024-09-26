@@ -15,8 +15,12 @@ public class Suspensao {
         this.marca = marca;
     }
 
-    public void ajustarAltura(double altura){
+    public void ajustarAltura(double altura, Freios freios){
         this.altura = altura;
+        if (altura < 10) {
+            double novoDesgaste = freios.verificarDesgaste() + 5.0; // Simula um aumento no desgaste
+            freios.setNivelDeDesgaste(novoDesgaste);
+        }
     }
 
     public String verificarEstado(){

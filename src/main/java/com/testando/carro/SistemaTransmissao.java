@@ -17,9 +17,14 @@ public class SistemaTransmissao {
         this.estado = estado;
     }
 
-    public void trocarMarcha(int marcha, Motor motor){
+    public void trocarMarcha(int marcha, Motor motor, SistemaDirecao sistemaDirecao){
+
         if(motor.verificarEstado() == true){
-            System.out.println("A marcha atual do carro é " + marcha);
+            if (sistemaDirecao.getAng() < 0) {
+                setTipo(null);
+            } else {
+                System.out.println("A marcha atual do carro é " + marcha);
+            }
         }
         else{
             System.out.println("O carro não está ligado.");

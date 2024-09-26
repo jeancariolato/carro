@@ -151,7 +151,7 @@ public class Carro {
     }
 
     public void ajustarPressao(double pressao){
-        pneus.ajustarPressao(pressao); // Ajusta a pressão dos pneus
+        pneus.ajustarPressao(pressao, sistemaDirecao, banco); // Ajusta a pressão dos pneus
     }
 
     // Métodos para as portas do carro
@@ -169,7 +169,7 @@ public class Carro {
 
     // Métodos para o sistema de direção
     public void ajustarDirecao(double angulo){
-        sistemaDirecao.ajustarDirecao(angulo); // Ajusta o ângulo da direção
+        sistemaDirecao.ajustarDirecao(angulo, banco); // Ajusta o ângulo da direção
     }
 
     public void verificarEstadoDirecao(){
@@ -203,12 +203,12 @@ public class Carro {
     }
 
     public void trocarMarcha(int marcha){
-        sistemaTransmissao.trocarMarcha(marcha, motor); // Troca a marcha do carro
+        sistemaTransmissao.trocarMarcha(marcha, motor, sistemaDirecao); // Troca a marcha do carro
     }
 
     // Métodos relacionados à suspensão
     public void ajustarAlturaSuspensao(double altura){
-        suspensao.ajustarAltura(altura); // Ajusta a altura da suspensão
+        suspensao.ajustarAltura(altura, freios); // Ajusta a altura da suspensão
     }
 
     public void verificarEstadoSuspensao(){

@@ -42,8 +42,8 @@ public class Pneus {
     public double verificarPressao() {
         return pressao;
     }
-    public void ajustarPressao(double pressao) {
-        this.pressao = pressao;
+    public void ajustarPressao(double pressao, SistemaDirecao sistemaDirecao, Banco banco) {
+        this.pressao = pressao - (sistemaDirecao.getAng() * 0.5) + (banco.verificarAltura() * 0.5);
         System.out.println("A nova pressão do pneu é: " + pressao);
     }
 

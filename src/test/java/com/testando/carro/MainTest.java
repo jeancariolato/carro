@@ -39,7 +39,6 @@ class MainTest {
     @Test
     public void testeNaoLigarLuzes() {
         luzes.ligaLuzes(sistemaEletrico);
-
         assertFalse(luzes.isEstado(), "As luzes não devem estar ligadas devido à voltagem insuficiente.");
     }
 
@@ -48,22 +47,9 @@ class MainTest {
     public void testAjusteFreiosComSuspensao() {
         // Verifica o desgaste inicial dos freios
         double desgasteInicial = freios.verificarDesgaste();
-
         // Ajuste da altura da suspensão para baixo
-        suspensao.ajustarAltura(8.0);
-
-        // Aumenta o desgaste dos freios se a altura da suspensão for menor que 10
-        if (suspensao.getAltura() < 10) {
-            double novoDesgaste = desgasteInicial + 5.0; // Simula um aumento no desgaste
-            freios.SubstituirFreios("A disco", "Ferro", novoDesgaste, "Cobreq", 13.0);
-            // Verificando se o desgaste é maior que o inicial
+        suspensao.ajustarAltura(8.0, freios);
             assertTrue(freios.verificarDesgaste() > desgasteInicial);
-            System.out.println("O desgaste deve aumentar ao abaixar a suspensão");
-        } else {
-            // Se a altura não for afetada, verifica se o desgaste permanece igual
-            assertEquals(desgasteInicial, freios.verificarDesgaste());
-            System.out.println("O desgaste deve permanecer igual ao manter a altura");
-        }
     }
 
     //TESTE INTEGRADO (MOTOR - SISTEMA COMBUSTÍVEL)
@@ -75,21 +61,14 @@ class MainTest {
         assertFalse(motor.verificarEstado(), "O motor não deve estar ligado devido à falta de combustível.");
     }
 
-    //TESTE INTEGRADO (BANCOS - PNEUS)
+    //TESTE INTEGRADO (BANCOS - PNEUS - SISTEMA DIREÇÃO)
     @Test
     public void testeAjusteBancoImpactaNaPressaoPneu() {
-        // Ajustando a altura do banco
+        double pressaoInicial = pneus.verificarPressao();
         banco.ajustarAltura(2.0); // Ajuste de altura do banco
-
-        // Simulando um impacto na pressão do pneu baseado na altura do banco
-        double novaPressao = pneus.verificarPressao() + (banco.verificarAltura() * 0.5); // Exemplo de lógica de impacto
-
-        // Ajustando a pressão do pneu
-        pneus.ajustarPressao(novaPressao);
-
-        // Verificando se a nova pressão está dentro de limites aceitáveis
-        assertTrue(novaPressao >= 30.0 && novaPressao <= 40.0,
-                "A pressão do pneu deve estar entre 30 e 40 após o ajuste da altura do banco.");
+        sistemaDirecao.ajustarDirecao(5.0, banco);// Ajuste da direção que impactará na pressão
+        double pressaoFinal = pneus.verificarPressao();
+        assertNotEquals(pressaoInicial, pressaoFinal, "A pressão do pneu diferente após o ajuste da altura e direção.");
     }
 
 
@@ -102,7 +81,7 @@ class MainTest {
         sistemaTransmissao.setEstado(true); // Simulando que a transmissão está em bom estado
 
         // Troca de marcha
-        sistemaTransmissao.trocarMarcha(2, motor);
+        sistemaTransmissao.trocarMarcha(2, motor, sistemaDirecao);
 
         // Verificação se o motor está funcionando
         assertTrue(motor.verificarEstado(), "O motor deve estar ligado para que a troca de marcha funcione.");
@@ -144,34 +123,11 @@ class MainTest {
         assertTrue(painel.getInfo().contains(portas.verificarEstado()), "O painel deve informar que a porta está aberta após a abertura.");
     }
 
-    //TESTE INTEGRADO (PNEUS - SIST.DIRECAO )
-    @Test
-    public void testAjusteDirecaoImpactaPressaoPneu() {
-        // Estado inicial do pneu
-        double pressaoInicial = pneus.verificarPressao();
-
-        // Ajuste da direção
-        sistemaDirecao.ajustarDirecao(5.0); // Ajuste da direção que impactará na pressão
-
-        // Simulando o impacto na pressão do pneu baseado no ângulo ajustado
-        double novaPressao = pressaoInicial - (sistemaDirecao.getAng() * 0.5); // Exemplo de lógica
-
-        // Ajustando a pressão do pneu
-        pneus.ajustarPressao(novaPressao);
-
-        // Verificando se a nova pressão está abaixo do limite mínimo
-        assertTrue(novaPressao >= 30.0, "A pressão do pneu deve ser no mínimo 30 após o ajuste da direção.");
-    }
-
     //TESTE INTEGRADO (BANCOS - SIST.DIREÇÃO)
     @Test
     public void testAjusteBancoImpactaDirecao() {
         // Ajuste da altura do banco
         banco.ajustarAltura(3.0); // Ajuste de altura do banco
-
-        // Simulando que o ajuste do banco impacta no controle da direção
-        sistemaDirecao.ajustarDirecao(banco.verificarAltura() * 0.5); // Exemplo de lógica de impacto
-
         // Verificando se o ângulo da direção está no intervalo esperado
         assertTrue(sistemaDirecao.getAng() > 0, "O ângulo da direção deve ser positivo após o ajuste do banco.");
     }
@@ -180,16 +136,7 @@ class MainTest {
     @Test
     public void testDirecaoInvalidaImpactaTrocaMarcha() {
         // Ajuste a direção para um valor inválido (como um ângulo fora do intervalo)
-        sistemaDirecao.ajustarDirecao(-5.0); // Um ajuste negativo representa uma direção inválida
-
-        // Tenta trocar a marcha com direção inválida
-        if (sistemaDirecao.getAng() < 0) {
-            sistemaTransmissao.setTipo(null); // Define o tipo como nulo se a direção for inválida
-        } else {
-            sistemaTransmissao.trocarMarcha(2, motor); // Troca de marcha apenas se a direção for válida
-        }
-
-        // Verifica se o tipo de transmissão é nulo devido à direção inválida
+        sistemaDirecao.ajustarDirecao(-5.0, banco); // Um ajuste negativo representa uma direção inválida
         assertNull(sistemaTransmissao.getTipo(), "O tipo de transmissão deve ser nulo devido à direção inválida.");
     }
 

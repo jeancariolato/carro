@@ -26,8 +26,8 @@ public class SistemaDirecao {
         return ang;
     }
 
-    public Double ajustarDirecao(Double angulo){
-        Double ang = angulo;
+    public Double ajustarDirecao(Double angulo, Banco banco){
+        Double ang = angulo * banco.verificarAltura() * 0.5;
         System.out.println("O angulo da direção:" + ang);
         return ang;
     }
