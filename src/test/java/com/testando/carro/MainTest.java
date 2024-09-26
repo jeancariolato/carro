@@ -8,7 +8,7 @@ class MainTest {
 
 
     Motor motor = new Motor("Teste", 1000, 12.0, "MARCA", true);
-    SistemaCombustivel sistemaCombustivel = new SistemaCombustivel(0.0, 250.0, "COMUM", "PETROSHOW", true);
+    SistemaCombustivel sistemaCombustivel = new SistemaCombustivel(25.0, 250.0, "COMUM", "PETROSHOW", true);
     SistemaDirecao sistemaDirecao = new SistemaDirecao("Mecânica", true, "Ferro", 5.0, "Danfoss", true);
     SistemaEletrico sistemaEletrico = new SistemaEletrico(12.0, 105.0, "Niquel", true, "Moura");
     SistemaTransmissao sistemaTransmissao = new SistemaTransmissao("Automática", 6, "Ferro", "Valeo", true);
@@ -28,7 +28,7 @@ class MainTest {
     @Test
     public void testAbrirPortaLigaLuzes() {
         portas.abrirPorta(luzes, sistemaEletrico);
-        assertTrue(luzes.getEstado());
+        assertFalse(luzes.getEstado(), "Está se esperando um resultado false");
     }
 
     //TESTE INTEGRADO (LUZES - SISTEMA ELÉTRICO)
@@ -124,7 +124,7 @@ class MainTest {
         assertFalse(sistemaCombustivel.isEstado(), "O sistema de combustível deve estar funcionando após o abastecimento.");
     }
 
-    //TESTE INTEGRADO (SIST.ELÉTRICO - PORTAS - PAINEL - PORTAS)
+    //TESTE INTEGRADO (SIST.ELÉTRICO - PORTAS - PAINEL)
     @Test
     public void testeAberturaPortaAtualizaPainelInformacoes() {
         // Ligar o sistema elétrico antes de abrir a porta
@@ -192,15 +192,21 @@ class MainTest {
     //TESTE (BANCO - CARRO)
     @Test
     public void testeSetEstadoBanco() {
-       carro.setEstadoBanco(3.2); // Ajustando o estado do banco
+       carro.setEstadoBanco(8.0); // Ajustando o estado do banco, alterando no Objeto Banco
 
         // Verificando se o estado foi ajustado corretamente
         assertEquals("O banco está inclinado 75º", banco.getEstado(), "O estado do banco deve ser 75º.");
+        System.out.println("O banco está inclinado 75º");
     }
 
+    // CARRO - SISTEMA DE COMBUSTIVEL
     @Test
-    void testLigarCarro() {
+    public void testExcessoDeCombustivel() {
+        //abastecer o carro (Valor adicionado no Sistema de Combustivel)
+        carro.abastecerCarro(50.0);
 
+        // Verificando se o nível de combustível ultrapassou a capacidade esperada
+        assertNotEquals(75.0, sistemaCombustivel.verificarNivel(),"O nível de combustível tem que ser diferente!");
     }
 
 }

@@ -18,7 +18,6 @@ public class Portas {
     public void abrirPorta(Luzes luzes, SistemaEletrico sistemaEletrico){
         estado = true;
         luzes.ligaLuzes(sistemaEletrico);
-
     }
     public void fecharPorta(){
         estado = false;
