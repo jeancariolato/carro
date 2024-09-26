@@ -1,8 +1,12 @@
 package com.testando.carro;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
@@ -189,7 +193,7 @@ class MainTest {
         assertNull(sistemaTransmissao.getTipo(), "O tipo de transmissão deve ser nulo devido à direção inválida.");
     }
 
-    //TESTE (BANCO - CARRO)
+    //TESTE INTEGRADO (BANCO - CARRO)
     @Test
     public void testeSetEstadoBanco() {
        carro.setEstadoBanco(8.0); // Ajustando o estado do banco, alterando no Objeto Banco
@@ -199,7 +203,7 @@ class MainTest {
         System.out.println("O banco está inclinado 75º");
     }
 
-    // CARRO - SISTEMA DE COMBUSTIVEL
+    // TESTE INTEGRADO (CARRO - SISTEMA DE COMBUSTIVEL)
     @Test
     public void testExcessoDeCombustivel() {
         //abastecer o carro (Valor adicionado no Sistema de Combustivel)
