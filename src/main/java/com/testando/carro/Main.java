@@ -73,7 +73,7 @@ public class Main {
         // SISTEMA DE TRANSMISSÃO
         carro.verificarEstadoTransmissao();
         carro.substituirComponenteTransmissao("Automática", 6, "Aço", "ZF", true);
-        carro.trocarMarcha(2);
+        carro.trocarMarcha("2");
 
         // SUSPENSAO
         carro.substituirSuspensao("Independente", "Aço", 15.0, 75, "Bilstein");

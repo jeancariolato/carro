@@ -8,6 +8,7 @@ public class SistemaTransmissao {
     private String marca;
 
     private Boolean estado;
+    private String marcha = null;
 
     public SistemaTransmissao(String tipo, int numeroMarchas, String material, String marca, Boolean estado) {
         this.tipo = tipo;
@@ -17,17 +18,18 @@ public class SistemaTransmissao {
         this.estado = estado;
     }
 
-    public void trocarMarcha(int marcha, Motor motor, SistemaDirecao sistemaDirecao){
-
+    public void trocarMarcha(String marcha, Motor motor, SistemaDirecao sistemaDirecao){
         if(motor.verificarEstado() == true){
-            if (sistemaDirecao.getAng() < 0) {
-                setTipo(null);
+            if (sistemaDirecao.getAng() <= 0) {
+                this.marcha = null;
             } else {
                 System.out.println("A marcha atual do carro é " + marcha);
+                this.marcha = marcha;
             }
         }
         else{
             System.out.println("O carro não está ligado.");
+            this.marcha = null;
         }
     }
 
@@ -86,5 +88,13 @@ public class SistemaTransmissao {
 
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+
+    public String getMarcha() {
+        return marcha;
+    }
+
+    public void setMarcha(String marcha) {
+        this.marcha = marcha;
     }
 }

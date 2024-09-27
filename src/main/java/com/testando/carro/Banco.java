@@ -44,7 +44,9 @@ public class Banco {
             System.out.println("---------------------------------------------");
             return alturaMaxima;
         }
-
+        else{
+            altura = novaAltura;
+        }
         return novaAltura;
     }
 

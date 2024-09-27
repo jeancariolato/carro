@@ -169,7 +169,7 @@ public class Carro {
 
     // Métodos para o sistema de direção
     public void ajustarDirecao(double angulo){
-        sistemaDirecao.ajustarDirecao(angulo, banco); // Ajusta o ângulo da direção
+        sistemaDirecao.ajustarDirecao(angulo); // Ajusta o ângulo da direção
     }
 
     public void verificarEstadoDirecao(){
@@ -202,7 +202,7 @@ public class Carro {
         sistemaTransmissao.substituirComponente(tipo, numeroMarchas, material, marca, estado); // Substitui componentes da transmissão
     }
 
-    public void trocarMarcha(int marcha){
+    public void trocarMarcha(String marcha){
         sistemaTransmissao.trocarMarcha(marcha, motor, sistemaDirecao); // Troca a marcha do carro
     }
 

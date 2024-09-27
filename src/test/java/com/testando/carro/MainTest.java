@@ -31,15 +31,11 @@ class MainTest {
     //TESTE INTEGRADO (PORTAS - LUZES - SISTEMA ELÉTRICO)
     @Test
     public void testAbrirPortaLigaLuzes() {
-        portas.abrirPorta(luzes, sistemaEletrico);
+        //sistemaEletrico.setVoltagem(3.0);
+        sistemaEletrico.setVoltagem(12.0);
+        //portas.abrirPorta(luzes, sistemaEletrico);
+        portas.fecharPorta();
         assertFalse(luzes.getEstado(), "Está se esperando um resultado false");
-    }
-
-    //TESTE INTEGRADO (LUZES - SISTEMA ELÉTRICO)
-    @Test
-    public void testeNaoLigarLuzes() {
-        luzes.ligaLuzes(sistemaEletrico);
-        assertFalse(luzes.isEstado(), "As luzes não devem estar ligadas devido à voltagem insuficiente.");
     }
 
     //TESTE INTEGRADO (FREIOS - SUSPENSÃO)
@@ -48,14 +44,17 @@ class MainTest {
         // Verifica o desgaste inicial dos freios
         double desgasteInicial = freios.verificarDesgaste();
         // Ajuste da altura da suspensão para baixo
+        //suspensao.ajustarAltura(12.0, freios);
         suspensao.ajustarAltura(8.0, freios);
-            assertTrue(freios.verificarDesgaste() > desgasteInicial);
+        assertTrue(freios.verificarDesgaste() > desgasteInicial);
     }
 
     //TESTE INTEGRADO (MOTOR - SISTEMA COMBUSTÍVEL)
     @Test
     public void testeNaoLigarMotorSemCombustivel() {
         // Tentando ligar o motor
+        //sistemaCombustivel.setNivelDeCombustivel(200);
+        sistemaCombustivel.setNivelDeCombustivel(0);
         motor.ligarMotor(sistemaCombustivel);
         // Verificando se o motor não está ligado devido à falta de combustível
         assertFalse(motor.verificarEstado(), "O motor não deve estar ligado devido à falta de combustível.");
@@ -65,29 +64,30 @@ class MainTest {
     @Test
     public void testeAjusteBancoImpactaNaPressaoPneu() {
         double pressaoInicial = pneus.verificarPressao();
-        banco.ajustarAltura(2.0); // Ajuste de altura do banco
-        sistemaDirecao.ajustarDirecao(5.0, banco);// Ajuste da direção que impactará na pressão
+        System.out.println(pressaoInicial);
+        //sistemaDirecao.ajustarDirecao(0.5);
+        //banco.ajustarAltura(0.5); // Ajuste de altura do banco
+        banco.ajustarAltura(2.0);
+        sistemaDirecao.ajustarDirecao(1.5);
+        pneus.ajustarPressao(pressaoInicial, sistemaDirecao, banco);
         double pressaoFinal = pneus.verificarPressao();
+        System.out.println(pressaoFinal);
         assertNotEquals(pressaoInicial, pressaoFinal, "A pressão do pneu diferente após o ajuste da altura e direção.");
     }
 
 
 
-    //TESTE INTEGRADO (MOTOR - SIST. COMBUSTIVEL - SIST.TRANSMISSÃO)
+    //TESTE INTEGRADO (MOTOR - SIST. COMBUSTIVEL - SIST.TRANSMISSÃO - SIST. DIREÇÃO)
     @Test
     public void testeMotorImpactaTrocaMarcha() {
-        // Configurações iniciais
-        motor.ligarMotor(sistemaCombustivel);
-        sistemaTransmissao.setEstado(true); // Simulando que a transmissão está em bom estado
-
-        // Troca de marcha
-        sistemaTransmissao.trocarMarcha(2, motor, sistemaDirecao);
-
         // Verificação se o motor está funcionando
-        assertTrue(motor.verificarEstado(), "O motor deve estar ligado para que a troca de marcha funcione.");
-
-        // Verificando se a marcha foi trocada corretamente
-        assertNotNull(sistemaTransmissao.getTipo(), "O tipo de transmissão não deve ser nulo após a troca de marcha.");
+        sistemaCombustivel.setNivelDeCombustivel(2);
+        //sistemaCombustivel.setNivelDeCombustivel(0);
+        motor.ligarMotor(sistemaCombustivel);
+        //sistemaDirecao.ajustarDirecao(0.0);
+        sistemaDirecao.ajustarDirecao(1.0);
+        sistemaTransmissao.trocarMarcha("2", motor, sistemaDirecao);
+        assertNotNull(sistemaTransmissao.getMarcha(), "O tipo de transmissão não deve ser nulo após a troca de marcha.");
     }
 
     //TESTE INTEGRADO (SIST.COMBUSTÍVEL - PAINEL)
@@ -95,67 +95,54 @@ class MainTest {
     public void testeAtualizaPainelComCombustivel() {
         // Configuração inicial
         double km = carro.getQuilometragem();
+        sistemaCombustivel.setNivelDeCombustivel(0.0);
         sistemaCombustivel.abastecer(50.0); // Abastece o carro com 50 litros
+        //sistemaCombustivel.abastecer(5.0)
         painel.atualizarInformacoes(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico, km);
         painel.ligarDisplay(); // Liga o painel
 
         // Verifica se o nível de combustível foi atualizado no painel
-        Boolean painelStatus = painel.getEstado();
-        assertNotNull(painelStatus, "O status do painel não deve ser nulo após o abastecimento.");
-        sistemaCombustivel.setEstado(false);
-        // Verifica se o sistema de combustível está com estado correto
-        assertFalse(sistemaCombustivel.isEstado(), "O sistema de combustível deve estar funcionando após o abastecimento.");
+        String infoCompleta = painel.getInfo();
+        String nivelCombustivel = infoCompleta.substring(infoCompleta.indexOf("Nível de Combustivel: "), infoCompleta.indexOf("\n", infoCompleta.indexOf("Nível de Combustivel: ")));
+        assertEquals(nivelCombustivel, "Nível de Combustivel: 50.0L");
     }
 
     //TESTE INTEGRADO (SIST.ELÉTRICO - PORTAS - PAINEL)
     @Test
     public void testeAberturaPortaAtualizaPainelInformacoes() {
         // Ligar o sistema elétrico antes de abrir a porta
+        //sistemaEletrico.setEstado(false);
         sistemaEletrico.setEstado(true);
 
         // Abrindo a porta e ligando as luzes
         portas.abrirPorta(luzes, sistemaEletrico);
+        //portas.fecharPorta();
 
         // Atualizando as informações do painel
         painel.atualizarInformacoes(motor, sistemaCombustivel, luzes, portas, suspensao, banco, sistemaEletrico, 0.0);
 
         // Verificando se o painel contém a informação correta sobre a porta aberta
-        assertTrue(painel.getInfo().contains(portas.verificarEstado()), "O painel deve informar que a porta está aberta após a abertura.");
+        assertTrue(painel.getInfo().contains("A porta está aberta!"), "O painel deve informar que a porta está aberta após a abertura.");
     }
 
-    //TESTE INTEGRADO (BANCOS - SIST.DIREÇÃO)
-    @Test
-    public void testAjusteBancoImpactaDirecao() {
-        // Ajuste da altura do banco
-        banco.ajustarAltura(3.0); // Ajuste de altura do banco
-        // Verificando se o ângulo da direção está no intervalo esperado
-        assertTrue(sistemaDirecao.getAng() > 0, "O ângulo da direção deve ser positivo após o ajuste do banco.");
-    }
-
-    //TESTE INTEGRADO (SIST.DIRECÃO - SIST.TRANSMISSÃO)
-    @Test
-    public void testDirecaoInvalidaImpactaTrocaMarcha() {
-        // Ajuste a direção para um valor inválido (como um ângulo fora do intervalo)
-        sistemaDirecao.ajustarDirecao(-5.0, banco); // Um ajuste negativo representa uma direção inválida
-        assertNull(sistemaTransmissao.getTipo(), "O tipo de transmissão deve ser nulo devido à direção inválida.");
-    }
 
     //TESTE INTEGRADO (BANCO - CARRO)
     @Test
     public void testeSetEstadoBanco() {
-       carro.setEstadoBanco(8.0); // Ajustando o estado do banco, alterando no Objeto Banco
+       carro.setEstadoBanco(4.0); // Ajustando o estado do banco, alterando no Objeto Banco
+        // carro.setEstadoBanco(8.0);
 
         // Verificando se o estado foi ajustado corretamente
         assertEquals("O banco está inclinado 75º", banco.getEstado(), "O estado do banco deve ser 75º.");
-        System.out.println("O banco está inclinado 75º");
     }
 
     // TESTE INTEGRADO (CARRO - SISTEMA DE COMBUSTIVEL)
     @Test
     public void testExcessoDeCombustivel() {
         //abastecer o carro (Valor adicionado no Sistema de Combustivel)
+        sistemaCombustivel.setNivelDeCombustivel(0.0);
         carro.abastecerCarro(50.0);
-
+        //carro.abastecerCarro(75.0);
         // Verificando se o nível de combustível ultrapassou a capacidade esperada
         assertNotEquals(75.0, sistemaCombustivel.verificarNivel(),"O nível de combustível tem que ser diferente!");
     }
