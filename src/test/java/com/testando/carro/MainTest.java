@@ -29,6 +29,7 @@ class MainTest {
 
 
     //TESTE INTEGRADO (PORTAS - LUZES - SISTEMA ELÉTRICO)
+    // Verifica se, ao fechar a porta, as luzes não estão acesas (estado false).
     @Test
     public void testAbrirPortaLigaLuzes() {
         //sistemaEletrico.setVoltagem(3.0);
@@ -39,6 +40,7 @@ class MainTest {
     }
 
     //TESTE INTEGRADO (FREIOS - SUSPENSÃO)
+    // Testa se o ajuste na altura da suspensão influencia o desgaste dos freios.
     @Test
     public void testAjusteFreiosComSuspensao() {
         // Verifica o desgaste inicial dos freios
@@ -50,6 +52,7 @@ class MainTest {
     }
 
     //TESTE INTEGRADO (MOTOR - SISTEMA COMBUSTÍVEL)
+    // Simula a tentativa de ligar o motor com nível zero de combustível.
     @Test
     public void testeNaoLigarMotorSemCombustivel() {
         // Tentando ligar o motor
@@ -61,6 +64,7 @@ class MainTest {
     }
 
     //TESTE INTEGRADO (BANCOS - PNEUS - SISTEMA DIREÇÃO)
+    // Verifica se ajustes na altura do banco e da direção influenciam a pressão dos pneus.
     @Test
     public void testeAjusteBancoImpactaNaPressaoPneu() {
         double pressaoInicial = pneus.verificarPressao();
@@ -78,6 +82,7 @@ class MainTest {
 
 
     //TESTE INTEGRADO (MOTOR - SIST. COMBUSTIVEL - SIST.TRANSMISSÃO - SIST. DIREÇÃO)
+    // Garante que, ao ligar o motor e ajustar a direção, o sistema de transmissão consegue trocar as marchas.
     @Test
     public void testeMotorImpactaTrocaMarcha() {
         // Verificação se o motor está funcionando
@@ -91,6 +96,7 @@ class MainTest {
     }
 
     //TESTE INTEGRADO (SIST.COMBUSTÍVEL - PAINEL)
+    // Testa se o painel de controle do carro atualiza corretamente o nível de combustível após abastecimento.
     @Test
     public void testeAtualizaPainelComCombustivel() {
         // Configuração inicial
@@ -108,6 +114,7 @@ class MainTest {
     }
 
     //TESTE INTEGRADO (SIST.ELÉTRICO - PORTAS - PAINEL)
+    // Verifica se, ao abrir a porta com o sistema elétrico ligado, o painel informa corretamente que a porta está aberta.
     @Test
     public void testeAberturaPortaAtualizaPainelInformacoes() {
         // Ligar o sistema elétrico antes de abrir a porta
@@ -127,6 +134,7 @@ class MainTest {
 
 
     //TESTE INTEGRADO (BANCO - CARRO)
+    // Verifica se o estado do banco (inclinação) é ajustado corretamente no objeto Banco.
     @Test
     public void testeSetEstadoBanco() {
        carro.setEstadoBanco(4.0); // Ajustando o estado do banco, alterando no Objeto Banco
@@ -137,6 +145,7 @@ class MainTest {
     }
 
     // TESTE INTEGRADO (CARRO - SISTEMA DE COMBUSTIVEL)
+    // Testa se o nível de combustível não ultrapassa o esperado após abastecer o carro.
     @Test
     public void testExcessoDeCombustivel() {
         //abastecer o carro (Valor adicionado no Sistema de Combustivel)
